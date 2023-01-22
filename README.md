@@ -18,7 +18,7 @@ Essa é uma aplicação que desenvolvi junto com a semana NLW do Rocketseat, ond
   + Para rodar a aplicação web sem erros utilizei a biblioteca vite
   + Para conectar a nossa aplicação a API usei a biblioteca axios, que diminui muito a quantidade de codigo que precisamos para fazer
     requisicoes HTTP
-  + Para utilização de componentes de acessibilidade utilizei a biblioeteca radix-UI, que dá uma gama de possibilidades para criação e design
+  + Para utilização de componentes de acessibilidade utilizei a biblioteca radix-UI, que dá uma gama de possibilidades para criação e design
 
 (Tudo que aprendi pra usar posteriormente anotei separadamente em txt´s e nos comentarios do código e pretendo continuar a melhorá-la ao longo do tempo)
 
