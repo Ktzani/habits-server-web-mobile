@@ -2,6 +2,7 @@
 Essa é uma aplicação que desenvolvi junto com a semana NLW do Rocketseat, onde implementei o back-end e o front-end da aplicação, aprendendo melhor a lidar principalmente com typescript, node, react e react-native, alem de utilizar diversas bibliotecas que ajudaram muito o meu progresso
 
 - Foi uma semana de muito estudo e aprendizado ao desenvolver essa aplicação completa do zero:
+  
   Geral:
   + Aprendi como iniciar um projeto do 0 sem erros
   + Utilizei a biblioteca dayjs para trabalharmos com datas
