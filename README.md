@@ -22,13 +22,14 @@ Essa é uma aplicação que desenvolvi junto com a semana NLW do Rocketseat, ond
 (Tudo que aprendi pra usar posteriormente anotei separadamente em txt´s e nos comentarios do código e pretendo continuar a melhorá-la ao longo do tempo)
 
 Aqui há uma demonstração de como está o desenvolvimento até o momento:
-#Tela Principal:
+
+# Tela Principal:
 ![Tela Inicial](https://user-images.githubusercontent.com/89881021/213941443-0eab26e3-e191-4468-94b2-69af4002b950.png)
 
-#Criando Novo habito:
+# Criando Novo habito:
 ![Novo habito](https://user-images.githubusercontent.com/89881021/213941588-7d949ea9-d9c9-4daa-8f14-1c8cbf4d6539.png)
 
-#Organizando habitos diários:
+# Organizando habitos diários:
 ![Organizando habitos diarios](https://user-images.githubusercontent.com/89881021/213941713-9918cc7e-cc71-4096-ae5c-d20e1e6f693e.png)
 
 
