@@ -10,7 +10,7 @@ Essa é uma aplicação que desenvolvi junto com a semana NLW do Rocketseat, ond
   Backend: 
   + Como ORM, utilizei o prisma para facilitar o trabalho com o banco de dados que criei
   + Utilizei o fastify como forma de fazer a API Restful ao realizar chamadas HTTP
-  + Utilzei uma seed como forma de popular o banco de dados para desenvolvermos a aplicacao
+  + Utilizei uma seed como forma de popular o banco de dados para desenvolvermos a aplicacao, por meio do seed do proprio prisma
   
   Frontend: 
   + Aprendi como estilizar minha aplicação com Tailwindcss
