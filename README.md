@@ -20,7 +20,7 @@ Essa é uma aplicação que desenvolvi junto com a semana NLW do Rocketseat, ond
     requisicoes HTTP
   + Para utilização de componentes de acessibilidade utilizei a biblioteca radix-UI, que dá uma gama de possibilidades para criação e design
 
-(Tudo que aprendi pra usar posteriormente anotei separadamente em txt´s e nos comentarios do código e pretendo continuar a melhorá-la ao longo do tempo)
+OBS: Tudo que aprendi pra usar posteriormente anotei separadamente em txt´s e nos comentarios do código e pretendo continuar a melhorá-la ao longo do tempo
 
 Aqui há uma demonstração de como está o desenvolvimento até o momento:
 
