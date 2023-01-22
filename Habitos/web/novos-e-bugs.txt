@@ -1,0 +1,16 @@
+- PROXIMO NIVEL: 
+    + Autenticação: usar ferramenta firebase ou auth0
+    + Notificações Push / Service workers (Notificações no browser ate mesmo com a aplicação fechada, utilizando 
+                                            esse recurso que são scripts que ficam rodando em backgroud na nossa 
+                                            aplicação a partir do momento que o usuario loga/entra na aplicação
+                                            pela primeira vez )
+
+    + Perfil publico do usuario onde esse grafico está publicamente visivel e disponivel, onde a pessoa 
+    so pode ver a tabela sem olhar os habitos, como a tabela do github
+
+- Bugs: 
+    + o amount de atividades do dia não está sincronizado com a criação de um novo habito no dia, ou seja,
+    se eu crio uma nova atividade pro dia da semana atual, não haverá uma sincronização com a barra de progresso
+    nem com a cor do quadradinho, ou seja, temos o mesmo problema do completed
+
+    + Com mts atividades no mesmo dia, o popover começa a ultrapassar a tela

@@ -1,0 +1,300 @@
+2º) FRONTEND: 
+
+- vite.js : template que traz pronto pra gente todas as aplicacoes que o frontend precisa e o utilizaremos para 
+  criacao do nosso projeto web
+    Exemplo: - Parte de build
+             - Suporte ao typecript
+             etc ...
+ 
+- react : biblioteca para construcao de interfaces de usuario
+    No react tudo sao COMPONENTES: componentes são funcoes que retornam html. Essas funcoes sao criadas geralmente 
+    para conseguirmos isolar uma parte do nosso codigo ou para conseguirmos fazer com que algo que se repete muito
+    em nossa aplicaçao seja mais facil de ser reaproveitado, facilitando assim a manutencao naquilo. Possivel criar
+    propriedades proprias para esses componentes e passa-las como parametro
+     
+    Portanto, COMPONENTE: nada mais é que tudo aquilo que desejamos reaproveitar/isolar da nossa aplicação 
+              PROPRIEDADE: informacão enviada para modificar um componente de forma visual ou comportamental
+
+- postcss: automatizar tarefas dentro do css
+
+- tailwindcss: plugin do postcss (flag -p para criar o arquivo do postcss config tambem se nao o vite nao consegue 
+entender o tailwind)
+
+- autoprefixer: ferramenta que adicionará prefixos de browser
+
+- phosphor-react: biblioteca do react com diversos icones a serem usados na aplicação, onde para usar um icone, basta
+coloca-lo como um componente e edita-lo como quisermos
+    Exemplo: <Plus size={20} className="text-violet-500"/>
+
+- Posso criar um cor propria indo na configuracao tailwind.config e criar um cor do jeito que fiz la. Assim, Posso
+usa-la onde quiser no projeto
+
+- OBS-IMP: os pixels em tailwind sempre são colocados como multiplos de 4, ou seja, se uso um gap-16, queremos um
+afastamento de 64 pixels
+
+- FlexCol -> elemento um embaixo do outro, em uma coluna
+
+- gridTemplateRows: Eu posso alterar a quantidade de rows que quero que repita tambem alterando o tailwind config como eu alterei, 
+colocando quantas linhas eu vou ter e essa opçao de 7 linhas adiciona um css especifico que coloquei
+
+- OBSERVAÇÃO: quando fazemos um map dentro do react, o primeiro elemento que vem dentro do map precisa de uma key 
+que seria o que identifica unicamente cada elemento do map 
+
+- MODO IMPERATIVO E DECLARATIVO:
+    IMPERATIVO: nos damos as instrucoes para o programa realizar algo como é feito no javascript e HTML para inserir algo
+    na tela.
+    DECLARATIVO: Eu faço o contrario do IMPERATIVO, em que insiro o modal em tela CASO a condição passada seja verdadeira.
+    
+- estado: variaveis monitoradas pelo react, ou seja, toda vez que alguma variavel que é um estado mudar seu valor, o react
+vai recalcular o nosso html. Agora, temos um maneira mais facil de alterar essas variaveis de false para true e vice e versa
+    useState: funçao para criacao de uma novo estado booleano, que terá como retorno um array com duas informações:
+    1) a variavel em si que desejamos trabalhar
+    2) a funcao que será utilizada para alterar o valor dessa variavel
+    Exemplo:   const [isModalOpen, setIsModalOpen] = useState(false)
+            function buttonClicked() {
+                setIsModalOpen(true)
+            }
+            
+            return( 
+                <button onClick={buttonClicked}>
+            );
+
+- RadixUI: biblioteca cheia de componentes sem qualquer estilização para trabalhar com acessibilidade 
+    IMPORTANTE: Como por padrao todos os componentes do radix nao vêm estilizado, precisamos estilizar nos mesmos do 0
+
+    Vamos usar o 'dialog', que abre um modal na tela toda para trabalharmos dentro dele
+    OBS: O radix controla automaticamente pra gente o estado de aberto ou fechado. Assim nao precisamos controlar isso 
+    na mão 
+    Dentro do Dialog.root vai todo o nosso modal, inclusive o botao que abre o modal tambem tem que estar dentro dele
+    Dialog.trigger -> usado ao inves do button
+    Portals no react: é uma feature que permite que exibamos HTML (tudo que tiver dentro de <Dialog.Portal> </Dialog.Portal>)
+em outro lugar da nossa aplicação e nao dentro do header, pois se pensarmos no modal, ele abrirá na frente da tela inteira
+do usario. Logo nao faz sentido posiciona-lo no header (cabeçalho da aplicação) que é algo tao pequeno. Logo, o portal joga
+o conteudo do nosso modal para fora da nossa aplicação (como por exemplo no body), ou seja, mais pra fora, para nao ficar
+dentro do header
+    Dialog.Overlay -> Cria uma nuvem OPACA que ficará atras do model para que o usuario nao fique vendo a tela atras
+    Dialog.Content -> onde colocaremos o conteudo do nosso model
+    Dialog.Close -> botao para fechar o modal
+    Dialog.Title -> criar o titulo do modal, onde ele usa o texto que está dentro da sua tag para anunciar ao leitor de 
+                    tela para quando o modal abrir. Pro leitor de tela é retornado algo do tipo "Abriu o modal de criar 
+                    habito" e assimvai ler o texto que está ali dentro  
+
+    Agora vamos usar o popover do radix tabela
+    Popover.Arrow -> cria uma setinha apontando de onde está saindo o popover. É necessario estiliza-la para ve-la
+
+    No nosso exemplo, criamos uma barra de progresso do 0 utilizando uma div, porém é possivel utilizar um componente
+    do radix chamado de Progress, que segue a mesma ideia 
+        Progress.Root -> barra por tras
+        Progress.Indicator -> barra da frente
+        
+    Tambem no nosso exemplo usamos um checkbox do radix para criamos checkbox personalizados:
+    Checkbox.indicator -> Faz aparecer tudo que está dentro dele somente se o usuario der o check. Logo, se eu colocar 
+                          alguma estilização nesse checkbox.indicator, esse elemento por completo vai sumir quando nao 
+                          tiver checkado. Logo, como temos um quadradinho aparecendo mesmo quando o checkbox nao está 
+                          checkado, vamos criar uma div envolta do indicator, que será o quadradinho, ou seja, é essa 
+                          div que receberá a estilizacao do quadradinho
+    OBS: No final o checkbox.root e o checkbox.Indicator sao transformados em tags HTML e ambos possuem o atributo 
+    data-state="checked" ou "uncheked". PORTANTO, com tailwind podemos fazer estilizações em um elemento baseado em 
+    data-atributes (atributos que começam com data), porém eu nao consigo fazer por padrão uma 'estilizacao condicional'
+    baseado no data dentro na div que contorna o checkbox.indicator, pois esses data-atributes sao colocados apenas nos 
+    componentes dos checkbox´s e na div nao existe essa propriedade
+      + Para isso o que fazemos?? Colocamos no checkbox.root, que está por volta da minha div, um classe chamada 'group', 
+      o que permite fazer estilizacoes baseadas em propriedades, que apenas o elemento pai tem, dentro de elementos filhos
+
+- autofocus no input: quando o modal abrir, o input de titulo receberá o foco automaticamente do teclado da pessoa
+
+- Usamos classes condicionais, onde vou adicionar ou remover uma classe, como por exemplo de cor, com base no percentual.
+    Para trabalhar com essas classes condicionais usamos a biblioteca chamada clsx, que recebe quantos parametros ela quiser
+    com as classes que nosso elemento terá. 
+        1) Se eu envio apenas um texto, ele entende que aquilo são classes que sempre serão enviadas
+        2) Agora enviando um objeto como parametro, ela entenderá que ela deve aplicar no elemento a classe
+           que é a chave do objeto 
+            Exemplo: {
+                'bg-violet-500': completedPercentage >= 80,
+                'bg-violet-400': completedPercentage >= 70,
+                'bg-violet-300': completedPercentage >= 60,
+            }
+            somente se o valor dessa propriedade for igual a true.
+            A partir disso eu posso ir criando varias condicionais diferentes para um mesmo elemento
+
+- Quando eu nao sei qual tipo dar para um parametro do typecript, podemos clicar na funcao e ver o que ela ta querendo 
+como tipo do parametro 
+    Exemolo: onSubmit -> FormEventHandler -> type FormEventHandler<T = Element> = EventHandler<FormEvent<T>>; 
+        + Nesse caso queremos usar o tipo 'FormEvent' 
+
+- Como buscar os dados dos inputs de um form no react:
+    Utilizando ESTADOS do react: 
+        + Eu crio um estado para CADA campo do meu formulário
+        Exemplo: 
+            const [title, setTitle] = useState('');
+            function createNewHabit(event: FormEvent){
+                event.preventDefault()
+            }            
+            <form onSubmit={createNewHabit} className="w-full flex flex-col mt-6">
+                <input 
+                    type="text" 
+                    id="title" 
+                    placeholder="Ex.: Exercicios, dormir bem, etc..." 
+                    className="p-4 rounded-lg mt-3 bg-zinc-800 text-white placeholder:text-zinc-400"
+                    autoFocus 
+                    onChange={event => setTitle(event.target.value)} //Isso aqui nos retorna o valor do input, ou seja
+                                                                     //toda vez que o usuário digitar qualquer coisa nesse 
+                                                                     //input ele vai anotando na variavel 'title' do nosso estado
+                />
+
+        OBS: Para armazenar os dias da semana, temos que armazenar OS DIAS DA SEMANA e nao um valor unico. Logo, receberemos
+        como resposta dos dias da semana um array numerico, [0, 1, 2, ...], assim como é feito no banco de dados. Nesse caso, 
+        o estado eu preciso indicar para ele como ele ta recebendo o tipo array que seria dessa forma:
+            Exemplo: useState<number[]>([])
+
+- No react existe um conceito chamado de IMUTABILIDADE, onde eu nunca faço modificaçoes em variaveis!! Eu sempre substituo a
+variavel por completo com uma nova variavel
+    Exemplo: Ao inves de buscar aonde está o dia da semana que eu quero remover e fazer metodos do array para isso, nos 
+    criamos um novo array 
+
+    function handleToggleWeekDay(weekDay: number){
+        if(weekDays.includes(weekDay)){
+            const weekDayWithRemovedOne = weekDays.filter(day => day !== weekDay) 
+
+            setWeekDays(weekDayWithRemovedOne)
+        } 
+        else {
+            const weekDaysWithAddedOne = [...weekDays, weekDay] 
+
+            setWeekDays(weekDaysWithAddedOne)
+        }
+    }
+
+
+- Propagação '...': 
+A sintaxe de propagação pode ser usada quando todos os elementos de um objeto ou array precisam ser incluídos 
+em um novo array ou objeto, ou devem ser aplicados um a um na lista de argumentos de uma chamada de função. 
+Existem três locais distintos que aceitam a sintaxe de propagação:
+    1º) 
+    function myFunction(x, y, z) {}
+    const args = [0, 1, 2];
+    myFunction(...args);
+
+    2º) 
+    const parts = ['shoulders', 'knees'];
+    const lyrics = ['head', ...parts, 'and', 'toes'];
+    //["head", "shoulders", "knees", "and", "toes"]
+
+    3º) 
+    const obj1 = { foo: 'bar', x: 42 };
+    const obj2 = { foo: 'baz', y: 13 };
+
+    const clonedObj = { ...obj1 };
+    //{ foo: "bar", x: 42 }
+
+    const mergedObj = { ...obj1, ...obj2 };
+    //{ foo: "baz", x: 42, y: 13 }
+
+- Devemos passsar dessa forma "onCheckedChange={() => handleToggleWeekDay(index)}" e não dessa 
+  onCheckedChange={handleToggleWeekDay(index)}, pois na ultima estamos executando uma função e nao passando
+  uma função como parametro como acontece na primeira, ou seja, o certo é criar uma funcao anonima ali dentro
+
+- dayjs().format("") -> nos permite retornas mais de uma informacão sobre uma data, como mês e ano
+
+- Para pegarmos os nomes do dia semana em PORTUGUES, fizemos um arquivo pra trocar o padrão de data para Portugues 
+na pasta 'lib' chamado de 'dayjs.js'. Em seguida importamos isso para toda nossa aplicação no arquivo App.tsx
+
+- Como zerar os valores de um form depois de ele ser 'postado'?
+    + Eu preciso que na função que está pegando as informações do form e postando zere esses elementos, e para isso
+    dentro dos inputs e checkbox colocamos uma propriedade 'value' e 'checked', respectivamente que recebem os 
+    respectivos valores dos estados no momento atual. Assim, ao 'zerar' os estados na função de crição do habito, 
+    'zeramos' os valores do form tambem
+
+- PROBLEMA: Temos um problema com fazer um chamada da Api dentro do componente HabitDay, pois so de abrir aplicaçao nos a 
+chamariamos o x numero de dias do ano e isso é extremamente ruim. Nos queremos que os dados de cada dia retornado pela minha 
+api carregue somente quando o usuario clicar e abrir o popover do quadradinho
+    + SOLUÇÃO: criar um novo componente apenas para o conteudo do popover (Popover.content), pois tudo o que está dentro 
+    dele só é exibido e carregado em tela no momento que o popover abrir. Logo, nos chamariamos a API apenas na sua 
+    abertura com o novo componente criado, ou seja, nos executaremos a chamada da api/executar o codigo somente quando
+    o usuário abrir o popover, ja que esse componentes não existe em tela antes e o useEffect só executa quando o 
+    componente é exibido em tela
+
+-LEMBRAR: nao podemos permitir o usuário alterar para completo ou descompleto um habito de um dia que ja passou. Por
+isso criamos a variavel isDateInPast no HabitList
+    + Avaliamos se a data dos hábitos que estamos vendo no momento é anterior a data atual
+    Nos fazemos essa coisa de colocar a data no final do dia, pois sem isso, ela desabilita até
+    mesmo a do dia atual, ja que o data do habito do dia atual é colocado com o tempo em 00:00:00.000. 
+    Logo, deu o meio do dia, a data atual será desabilitada também. Por isso eu coloco a data no final 
+    do dia atual para desabilitar as outras datas, ja que o isBefore da hora no momento nao pegará a data atual 
+    Exemplo:
+       const isDateInPast = dayjs(date).endOf('day').isBefore(new Date())
+
+- Para marcar um habito como completo ou incompleto em um dia, nao precisamos informar o que eu quero para levar essa
+informacão para o banco, pois ela ja sabe o que fazer, ou seja, ja tem essa informacão no banco de dados. Logo, como eu 
+não preciso encaminhar nenhuma dessas informações, a chamada para API pode ser feita em qualquer posição
+    async function handleToogleHabit(habitId: string) {
+        const isHabitAlreadyCompleted = habitsInformations?.completedHabits.includes(habitId)
+
+        await api.patch(`/habits/${habitId}/toggle`)
+    }
+
+    OU
+
+    async function handleToogleHabit(habitId: string) {
+        await api.patch(`/habits/${habitId}/toggle`)
+
+        const isHabitAlreadyCompleted = habitsInformations?.completedHabits.includes(habitId)
+    }
+
+
+- IMPORTANTE: o ! indica que aquela informacão ao qual estamos manipulando VAI existir naquele momento
+    Exemplo: 
+        completedHabits = habitsInformations!.completedHabits.filter(id => id !== habitId)
+
+- Temos um problema: precisamos sincronizar a questão de completar ou nao completar um habito com a cor da barra de 
+progresso e a cor do quadradinho, PORÉM essa barra de tarefas e o quadradinho estão em componentes diferentes da questão
+de completar ou nao completar um habito (um se encontra em HabitDay e outro se encontra em HabitList). Como faremos o 
+componente HabitDay obter a informacão de que a lista de habitos completos mudou??
+    + Ai que entra o assunto do react de COMUNICAÇÃO ENTRE COMPONENTES. 
+    Exemplo: 
+        No HabitDay, eu posso criar uma função, que será passada para o HabitList como uma propriedade,
+        onde toda vez que o numero de habitos completo mudar, essa função será chamada. Agora HabitList recebe a função 
+        através das propriedades e por isso tenho que alterar a sua interface
+
+    PROBLEMA QUE DEVEMOS CORRIGIR: a quantidade de habitos completos está FIXO, ou seja, é um numero que vem do nosso
+    componente SummaryTable, ou seja, quando a tela principal carrega nos buscamos as informacões do backend de quantos 
+    habitos o usuário ja tinha completado em cada dia e leva isso para o habitDay o numero de habitos completos, ou seja,
+    esse numero está fixo. Se eu quero que algo nao seja fixo. A melhor maneira é criar um estado
+    Exemplo: 
+        Ao inves de chamarmos a propriedade de completed, chamamos ela de defaultCompleted, ou seja, um valor padrão
+        inicial que pode mudar. Assim, mudamos isso tanto em SummaryTable quanto no HabitDay. Por fim criamos um estado
+        chamado de 'completed' que terá como valor inicial/padrão o defaultCompleted e que mudará ao longo do tempo ao 
+        chamarmos a função setCompleted()
+
+- Corrigindo a sincronização que nao funcionou de primeira:
+    + Quando definimos que o valor inicial do nosso estado completed é o defaultCompleted, dizemos que o primeiro valor
+    que for dado a essa propriedade defaultCompleted será usado como o primeiro valor desse estado chamado Completed. Ai
+    o que acontece é que lá no nosso SummaryTable, onde nos mostramos nos HabitsDays, as datas estão sendo exibidas em
+    tela até enquanto a nossa chamada de API de '/summary' não finalizou. Enquanto essa chamada não finalizou, todos 
+    esses dados de amount e defaultCompleted serão 0, ou seja, em um primeiro momento, o HabitDay está sempre sendo criado 
+    com o amount e o defaultCompleted como 0
+        Para evitar isso: Carregamos a lista de dias/a tabela de datas somente quando o estado summary
+            const [summary, setSummary] = useState<Summary>([])
+        (que possui os dados retornados pela API '/summary') já possuir dados (ja tiver sido carregada), ou seja,
+        quando a chamada da API ja tiver sido finalizada e retornado os dados
+            ASSIM FICA: {summary.length > 0 && summaryDates.map( date => {
+                            const dayInSummary = summary.find(day => { 
+                                return dayjs(date).isSame(day.date, 'day') /
+                            })
+
+				            return <HabitDay key={date.toString()} 
+                                             date={date} 
+                                             amount={dayInSummary?.amount} 
+                                             defaultCompleted={dayInSummary?.completed} 
+                                    />
+					        })
+                        }
+            ONDE só executaremos a parte de mostrar os HabitDay se o estado summary tiver algum dado retornado da
+            API '/summary' => summary.length > 0
+
+- transitions: 
+    transition-color -> muda apenas a cor de lugar
+    transition-all -> muda nao somente a cor como tambem os eixos do elemento
+    duration -> aumenta o tempo da transição
+
+

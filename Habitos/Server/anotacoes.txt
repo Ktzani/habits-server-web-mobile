@@ -1,0 +1,52 @@
+1º) BACKEND
+await: esperar a chamada do banco de dados ser finalizada antes de retornar os dados para o front-end 
+ja que a chamada para um banco de dados é demorada
+LEMBRAR: não é possivel utilizar o await fora de uma função assincrona
+
+fastify = express -> utilizado para utilizar operacoes RESTful do http
+
+orm = prisma : facilita o uso de banco de dados, onde transforma qualquer dado que passamos nele para o banco de 
+de dados especifico
+
+npx prisma studio: abrir o banco de dados de forma a conseguirmos ver as suas tabelas e editar
+
+cors: mecanismo de segurança que diz quais aplicacoes vao poder acessar os dados desse backend que estamos mexendo. 
+Sem configura-lo nenhuma aplicacao frontend conseguira buscar dados da minha aplicacao backend
+ 
+Executar bando de dados do prisma: npx prisma migrate dev
+
+Prisma ERD generator: gerador de diagramas ERD
+Adicionar: 
+    generator erd {
+    provider = "prisma-erd-generator"
+    }
+Rodar: npx prisma generate
+
+seed: forma de popular o banco de dados para desenvolvermos nossa aplicacao
+    Rodar: npx prisma db seed
+
+zod: 
+    Automaticamente o zod avalia os dados que foram passados para gente e se os dados nao tiverem 
+    sido preenchidos de forma correta, dará erro. Para usa-lo, o importamos e criamos uma variavel 
+    que identifica os objetos que estamos passando e os dados que esses objetos terao com suas respec
+    tivas propriedades
+    Portanto, o zod é mt bom, pois ele alem de fazer a validacao ele faz a tipagem de cada informacao que trazemos
+    do frontend
+
+insominia: ferramentea para testar requisições
+
+dayjs: biblioteca que nos permite fazer varios interacoes com datas
+
+IMPORTANTE: o prisma orm nos ajuda a nao ter que ficar cuidando da sintaxe do banco de dados que estamos usando, ou seja, 
+            em nossa aplicacao ate agora, se trocarmos o banco de dados por MYSQL, POSTGREES ou qualquer outro banco
+            nao precisamos mudar nada na nossa aplicacao, ENTRETANTO a partir do momento que eu começo a escrever RAW SQL,
+            ou seja, a query diretamente, existem coisas que só funcionarão em bancos especificos, nesse nosso caso,
+            especificamente no SQLite
+
+OBS: SQLite -> campo de data é salvo como Epoch Timestamp
+    Os segundos que existem sao salvos sempre com tres 0´s a mais com o Epoch Timestamp (salvado em milisegundos). Por isso, 
+    quando trabalho com data, eu preciso dividi-la por 1000.0 pra poder usa-la (como em um conversão usando strftime)
+    strftime -> 1º parametro: formato da data que desejo
+                2º parametro: a data que desejamos converter
+                3º parametro: formato do 2º parametro que estou passando a data 
+                Retorna uma STRING

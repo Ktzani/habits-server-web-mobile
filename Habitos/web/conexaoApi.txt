@@ -1,0 +1,49 @@
+COMO FAZER A CONEXÃO DO NOSSO SERVIDOR COM A APLICAÇÃO FRONTEND ATRAVÉS DE CHAMADAS HTTP?
+
+- Vamos utilizar uma biblioteca chamada AXIOS que diminui muito a quantidade de codigo que precisamos para fazer
+requisicoes HTTP
+
+1º) Instalar axios com npm install axios
+2º) Criar pasta lib, que é pasta onde configuramos intregações com outras bibliotecas
+3º) Importo axios
+4º) Crio uma variavel api a partir do axios.create, e dentro do create passaremos a url base do servidor a partir da 
+    propriedade baseUrl e essa url base que será usada em todas chamadas
+
+- Tomar cuidado onde iremos importar nossa Api nos proximos codigos, pois tudo que eu coloco fora do componente do react
+não vai conseguir em nenhum momento enxergar informações que estão dentro do componente
+    Por isso, chamadas HTTP, em 99% das vezes sempre sao feitas DENTRO componente
+    ENTRETANTO, TEMOS UM PROBLEMA: tudo que está dentro do nosso componente é executado novamente sempre que há uma 
+    atualização/mudança de um estado, de propriedade ou ate mesmo de um estado de um componente pai alterar, ou seja,
+    é normal que o codigo que está dentro do componente ser executado varias e varias vezes
+        + Por conta disso temos que tomar um cuidado com chamadas APIs, pois não queremos que ela fique executando varias
+        e varias vezes. Por isso usamos uma funcao do react (por enquanto, pois estão trabalhando nisso) chamada de 
+        'useEffect'
+
+        useEffect: função propria do react que lida com efeitos colaterais, ou seja, coisas que acontecem quando algo 
+        aconteceu antes 
+        Sintaxe: 1º) passo qual a função que vai executar e o 2º) quando, que é um array.   
+            Exemplo: const [example] = useState('')
+                     useEffect(() => {}, [example])
+                Agora toda vez que o valor da variavel example mudar, seja qual for o motivo, o react vai executar o 
+                codigo da funcao de dentro do useEffect  
+
+        HACK QUE USAREMOS: se eu deixar esse array vazio, o codigo da função de dentro do useEffect é executado apenas
+        uma vez (quando o componente for exibido em tela pela primeira vez). Dessa meneira usamos essa hackzinho para 
+        conseguirmos fazer a chamada da API uma unica vez
+
+- PERGUNTA: Como utilizar o que está dentro do useEffet dentro do return do componente?
+    + Eu preciso colocar tudo dentro de um estado, que é o unico lugar de dentro do React que consegue reagir e mostrar
+    informações em tela da maneira correta 
+    Exemplo:
+        const [summary, setSummary] = useState<Summary>([])
+
+        //Lembrar: essa rota summary (get) é feita para pegar os registros com os respectivos id das datas, a data em si, 
+        //quantidade de habitos daquele dia e quantos foram completos
+        useEffect(() => {
+          //Usamos um promise, pois é algo que demora
+          api.get('/summary').then(response => {
+            // console.log(response.data)
+            setSummary(response.data)
+          })
+        }, [])
+                

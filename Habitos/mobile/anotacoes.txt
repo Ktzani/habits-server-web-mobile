@@ -1,0 +1,17 @@
+3º) Mobile
+
+Componente: - Nada mais é que uma funcao e no retorno dessa funcao é o que será renderizado na tela utilizando
+            uma estrutura declarativa. 
+            - Nos componentes teremos os elementos que vamos e queremos reaproveitar em nossa aplicação
+
+arquivo app.json: lugar onde colocaremos as configuracoes da nossa aplicação
+
+Criamos dois tipos de assets: os que serão usados para aplicação mais interna e outros relacionados a configuracao
+externa do app
+
+Pasta src (source): separar o conteudo da aplicação criado por nós daquele conteudo que ja vem junto com a criação 
+do projeto
+
+npx expo start --tunnel -> comando pra vermos aplicação rodando
+
+nativewind : nos permite utilizar o tailwind no reactnative tb
