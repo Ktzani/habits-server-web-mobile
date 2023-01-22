@@ -11,6 +11,7 @@ Essa é uma aplicação que desenvolvi junto com a semana NLW do Rocketseat, ond
   + Como ORM, utilizei o prisma para facilitar o trabalho com o banco de dados que criei
   + Utilizei o fastify como forma de fazer a API Restful ao realizar chamadas HTTP
   + Utilizei uma seed como forma de popular o banco de dados para desenvolvermos a aplicacao, por meio do seed do proprio prisma
+  + Usei o 'Insomnia' como um aplicativo a parte para testar as requisições do banco a partir das rotas que criei
   
   Frontend: 
   + Aprendi como estilizar minha aplicação com Tailwindcss
